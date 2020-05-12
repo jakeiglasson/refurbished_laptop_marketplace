@@ -1,0 +1,62 @@
+<%= form_with(model: laptop, local: true) do |form| %>
+  <% if laptop.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(laptop.errors.count, "error") %> prohibited this laptop from being saved:</h2>
+
+      <ul>
+        <% laptop.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :brand_id %>
+    <%= form.text_field :brand_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :grade %>
+    <%= form.text_field :grade %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cpu_id %>
+    <%= form.text_field :cpu_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ram_id %>
+    <%= form.text_field :ram_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hard_drive_id %>
+    <%= form.text_field :hard_drive_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :model %>
+    <%= form.text_field :model %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sold_status %>
+    <%= form.number_field :sold_status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

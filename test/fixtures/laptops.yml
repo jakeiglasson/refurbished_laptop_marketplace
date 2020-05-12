@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  brand_id: 
+  grade: MyString
+  cpu_id: 
+  ram_id: 
+  hard_drive_id: 
+  model: MyString
+  price: 1
+  sold_status: 1
+
+two:
+  user_id: 
+  brand_id: 
+  grade: MyString
+  cpu_id: 
+  ram_id: 
+  hard_drive_id: 
+  model: MyString
+  price: 1
+  sold_status: 1
