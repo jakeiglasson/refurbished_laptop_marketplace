@@ -1,0 +1,22 @@
+<%= form_with(model: laptop_brand, local: true) do |form| %>
+  <% if laptop_brand.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(laptop_brand.errors.count, "error") %> prohibited this laptop_brand from being saved:</h2>
+
+      <ul>
+        <% laptop_brand.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

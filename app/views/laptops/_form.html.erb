@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.collection_select(:laptop, User.all, :id, :name, prompt: true) %>
   </div>
 
   <div class="field">
@@ -51,10 +51,10 @@
     <%= form.number_field :price %>
   </div>
 
-  <div class="field">
+  <!-- <div class="field">
     <%= form.label :sold_status %>
     <%= form.number_field :sold_status %>
-  </div>
+  </div> -->
 
   <div class="actions">
     <%= form.submit %>

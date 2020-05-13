@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @laptop_order.user_id %>
+</p>
+
+<p>
+  <strong>Laptop:</strong>
+  <%= @laptop_order.laptop_id %>
+</p>
+
+<%= link_to 'Edit', edit_laptop_order_path(@laptop_order) %> |
+<%= link_to 'Back', laptop_orders_path %>

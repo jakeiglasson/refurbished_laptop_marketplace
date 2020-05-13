@@ -1,0 +1,2 @@
+class LaptopOrder < ApplicationRecord
+end
