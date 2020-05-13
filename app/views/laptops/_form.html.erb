@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :cpu_id %>
-    <%= form.text_field :cpu_id %>
+    <%= form.collection_select(:laptop, Cpu.all, :id, :name, prompt: true) %>
   </div>
 
   <div class="field">

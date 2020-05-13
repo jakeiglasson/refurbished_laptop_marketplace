@@ -86,3 +86,15 @@ arr.each_with_index {|v, i|
     )
     puts "Grade #{Grade.last.name} created"
   }
+
+# Cpu GENERATION -----------------------------------------------------------------
+
+Cpu.delete_all
+
+arr = ['i3', 'i5', 'i7', 'i9', 'amd ryzen 3', 'amd ryzen 5', 'amd ryzen 9']
+arr.each_with_index {|v, i|
+    Cpu.create(
+      name: arr[i],
+    )
+    puts "Cpu #{Cpu.last.name} created"
+  }
