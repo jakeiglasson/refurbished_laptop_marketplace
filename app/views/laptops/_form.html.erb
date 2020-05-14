@@ -10,35 +10,40 @@
       </ul>
     </div>
   <% end %>
+  
+  <div>
+    <%= form.label :picture %> 
+    <%= form.file_field :picture, accept: 'image/png,image/gif,image/jpeg,image/jpg' %>
+  </div>
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.collection_select(:laptop, User.where(seller: 'true'), :id, :name, prompt: true) %>
+    <%= form.collection_select(:user_id, User.where(seller: 'true'), :id, :name, prompt: true) %>
   </div>
 
   <div class="field">
     <%= form.label :brand_id %>
-    <%= form.collection_select(:laptop, LaptopBrand.all, :id, :name, prompt: true) %>
+    <%= form.collection_select(:brand_id, LaptopBrand.all, :id, :name, prompt: true) %>
   </div>
 
   <div class="field">
-    <%= form.label :grade %>
-    <%= form.collection_select(:laptop, Grade.all, :id, :name, prompt: true) %>
+    <%= form.label :grade_id %>
+    <%= form.collection_select(:grade_id, Grade.all, :id, :name, prompt: true) %>
   </div>
 
   <div class="field">
     <%= form.label :cpu_id %>
-    <%= form.collection_select(:laptop, Cpu.all, :id, :name, prompt: true) %>
+    <%= form.collection_select(:cpu_id, Cpu.all, :id, :name, prompt: true) %>
   </div>
 
   <div class="field">
     <%= form.label :ram_id %>
-    <%= form.text_field :ram_id %>
+    <%= form.collection_select(:ram_id, Ram.all, :id, :name, prompt: true) %>
   </div>
 
   <div class="field">
     <%= form.label :hard_drive_id %>
-    <%= form.text_field :hard_drive_id %>
+    <%= form.collection_select(:hard_drive_id, HardDrive.all, :id, :name, prompt: true) %>
   </div>
 
   <div class="field">

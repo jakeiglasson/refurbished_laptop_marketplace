@@ -9,9 +9,7 @@ class Laptop < ApplicationRecord
   has_one :cpu
   has_one :ram
   has_one :hard_drive
+  has_one_attached :picture
 
-  def brand_with_model
-    "#{:brand_id} #{:model}"
-  end
-
+  validates :user_id, :brand_id, :grade_id, :cpu_id, :ram_id, :hard_drive_id, :model, :price, presence: true
 end
