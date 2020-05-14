@@ -25,7 +25,7 @@
       <tr>
         <td>
           <% if laptop.picture.attached? %>
-            <%= image_tag laptop.picture %>
+            <%= image_tag laptop.picture, class: "laptop-image" %>
           <% end %>             
         </td>
         <td><%= laptop.id %></td>

@@ -53,11 +53,15 @@ puts "SELLER REQUESTED USERS CREATED: #{arr[2]}"
 
 LaptopBrand.delete_all
 
+
+
 arr = ['Apple','Dell','Lenovo', 'HP', 'Asus', 'Microsoft', 'MSI', 'Razer', 'Alienware']
 arr.each_with_index {|v, i|
-    LaptopBrand.create(
-      name: arr[i]
+    a = LaptopBrand.new(
+      name: arr[i],
     )
+    a.picture.attach(io: File.open('./app/assets/images/logo.png'), filename: 'logo.png')
+    a.save
     puts "LaptopBrand #{LaptopBrand.last.name} created"
   }
 
@@ -123,7 +127,7 @@ arr = ('a'..'z').to_a
 20.times do
   price = rand(300..1000)
   brand = LaptopBrand.pluck(:id).sample
-  Laptop.create(
+  a = Laptop.new(
     user_id: User.where(seller: "true").pluck(:id).sample,
     brand_id: brand,
     grade_id: Grade.pluck(:id).sample,
@@ -134,6 +138,8 @@ arr = ('a'..'z').to_a
     price: price,
     sold_status: "false"
   )
+  a.picture.attach(io: File.open('./app/assets/images/laptop.png'), filename: 'laptop.png')
+  a.save
   puts "Laptop #{Laptop.last.model} created"
 end
 

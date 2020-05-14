@@ -69,6 +69,6 @@ class LaptopBrandsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def laptop_brand_params
-      params.require(:laptop_brand).permit(:name)
+      params.require(:laptop_brand).permit(:picture, :name)
     end
 end

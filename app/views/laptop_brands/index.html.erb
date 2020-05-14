@@ -13,6 +13,14 @@
   <tbody>
     <% @laptop_brands.each do |laptop_brand| %>
       <tr>
+        <td>
+        <div style="max-height: 50px">
+          <% if laptop_brand.picture.attached? %>
+            <%= image_tag laptop_brand.picture, class: "brand-logo"%>
+          <% end %>  
+        </div>
+                     
+        </td>
         <td><%= laptop_brand.name %></td>
         <td><%= link_to 'Show', laptop_brand %></td>
         <td><%= link_to 'Edit', edit_laptop_brand_path(laptop_brand) %></td>
