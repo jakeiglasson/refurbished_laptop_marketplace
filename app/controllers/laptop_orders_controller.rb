@@ -28,6 +28,9 @@ class LaptopOrdersController < ApplicationController
 
     respond_to do |format|
       if @laptop_order.save
+        Laptop.find(laptop_order_params[:laptop_id]).update(
+          sold_status: "true"
+        )
         format.html { redirect_to @laptop_order, notice: 'Laptop order was successfully created.' }
         format.json { render :show, status: :created, location: @laptop_order }
       else

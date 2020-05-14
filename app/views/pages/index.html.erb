@@ -1,9 +1,32 @@
 <h1>ROOT INDEX</h1>
 
-<%= link_to "USERS", users_path %>
-<%= link_to "LAPTOPS", laptops_path %>
-<%= link_to "LAPTOP ORDERS", laptop_orders_path %>
-<%= link_to "BRANDS", laptop_brands_path %>
-<%= link_to "CPUS", cpus_path %>
-<%= link_to "RAMS", rams_path %>
-<%= link_to "HARD_DRIVES", hard_drives_path %>
+<ul>
+  <li><%= link_to "USERS", users_path %></li>
+  <li><%= link_to "LAPTOPS", laptops_path %></li>
+
+  <li>
+    LAPTOP COMPONENTS
+
+    <ul>
+      <li>
+        <%= link_to "LAPTOP ORDERS", laptop_orders_path %>
+      </li>
+      <li>
+        <%= link_to "BRANDS", laptop_brands_path %>
+      </li>
+      <li>
+        <%= link_to "CPUS", cpus_path %>
+      </li>
+      <li>
+        <%= link_to "RAMS", rams_path %>
+      </li>
+      <li>
+        <%= link_to "HARD DRIVES", hard_drives_path %>
+      </li>
+    </ul>
+
+  </li>
+
+</ul>
+
+

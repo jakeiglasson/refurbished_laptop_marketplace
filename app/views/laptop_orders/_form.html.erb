@@ -13,15 +13,16 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.collection_select(:laptop_order, User.all, :id, :name, prompt: true) %>
+    <%= form.collection_select(:user_id, User.all, :id, :name, prompt: true) %>
   </div>
 
   <div class="field">
     <%= form.label :laptop_id %>
-    <%= form.text_field :laptop_id %>
+    <%= form.collection_select(:laptop_id, Laptop.all, :id, :model, prompt: true) %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>

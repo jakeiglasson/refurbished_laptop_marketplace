@@ -120,20 +120,37 @@ arr.each_with_index {|v, i|
 Laptop.delete_all
 arr = ('a'..'z').to_a
 
-10.times do
+20.times do
   price = rand(300..1000)
+  brand = LaptopBrand.pluck(:id).sample
   Laptop.create(
-    user_id: User.pluck(:id).sample,
-    brand_id: LaptopBrand.pluck(:id).sample,
+    user_id: User.where(seller: "true").pluck(:id).sample,
+    brand_id: brand,
     grade_id: Grade.pluck(:id).sample,
     cpu_id: Cpu.pluck(:id).sample,
     ram_id: Ram.pluck(:id).sample,
     hard_drive_id: HardDrive.pluck(:id).sample,
-    model: "#{Faker::Space.nasa_space_craft} #{arr.sample.capitalize()}#{Faker::Number.number(digits: 4)}",
+    model: "#{LaptopBrand.find(brand).name} #{Faker::Space.nasa_space_craft} #{arr.sample.capitalize()}#{Faker::Number.number(digits: 4)}",
     price: price,
     sold_status: "false"
   )
-  puts "Laptop #{LaptopBrand.find(Laptop.last.brand_id).name} #{Laptop.last.model} created"
+  puts "Laptop #{Laptop.last.model} created"
+end
+
+# LaptopOrder GENERATION -----------------------------------------------------------------
+
+LaptopOrder.delete_all
+
+arr = Laptop.pluck(:id)
+10.times do
+  sold_laptop = arr.sample
+  LaptopOrder.create(
+    user_id: User.where(seller: "false").pluck(:id).sample,
+    laptop_id: sold_laptop
+  )
+  Laptop.find(sold_laptop).update(sold_status: "true")
+  arr -= [sold_laptop]
+  puts "LaptopOrder created"
 end
 
 

@@ -16,8 +16,26 @@
   <li>
     SELLER: <%= @user.seller %>
   </li>
-
 </ul>
+
+<h3>Purchases</h3>
+
+<% arr = LaptopOrder.where(user_id: @user.id).pluck(:laptop_id) %>
+
+<ul>
+<% if !arr.empty? %>
+  <%  for i in arr%>
+    <% if i != nil %>
+      <li>
+        <%= Laptop.find(i).model %>
+      </li>
+    <% end %>
+  <% end %>
+<% else %>
+  <li>no purchases</li>
+<% end %>
+</ul>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
