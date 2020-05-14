@@ -2,7 +2,7 @@ require 'test_helper'
 
 class HardDrivesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @hard_drife = hard_drives(:one)
+    @hard_drive = hard_drives(:one)
   end
 
   test "should get index" do
@@ -11,36 +11,36 @@ class HardDrivesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_hard_drife_url
+    get new_hard_drive_url
     assert_response :success
   end
 
-  test "should create hard_drife" do
+  test "should create hard_drive" do
     assert_difference('HardDrive.count') do
-      post hard_drives_url, params: { hard_drife: { name: @hard_drife.name } }
+      post hard_drives_url, params: { hard_drive: { name: @hard_drive.name } }
     end
 
-    assert_redirected_to hard_drife_url(HardDrive.last)
+    assert_redirected_to hard_drive_url(HardDrive.last)
   end
 
-  test "should show hard_drife" do
-    get hard_drife_url(@hard_drife)
+  test "should show hard_drive" do
+    get hard_drive_url(@hard_drive)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_hard_drife_url(@hard_drife)
+    get edit_hard_drive_url(@hard_drive)
     assert_response :success
   end
 
-  test "should update hard_drife" do
-    patch hard_drife_url(@hard_drife), params: { hard_drife: { name: @hard_drife.name } }
-    assert_redirected_to hard_drife_url(@hard_drife)
+  test "should update hard_drive" do
+    patch hard_drive_url(@hard_drive), params: { hard_drive: { name: @hard_drive.name } }
+    assert_redirected_to hard_drive_url(@hard_drive)
   end
 
-  test "should destroy hard_drife" do
+  test "should destroy hard_drive" do
     assert_difference('HardDrive.count', -1) do
-      delete hard_drife_url(@hard_drife)
+      delete hard_drive_url(@hard_drive)
     end
 
     assert_redirected_to hard_drives_url

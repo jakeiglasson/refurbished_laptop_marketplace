@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class HardDrivesTest < ApplicationSystemTestCase
   setup do
-    @hard_drife = hard_drives(:one)
+    @hard_drive = hard_drives(:one)
   end
 
   test "visiting the index" do
@@ -14,7 +14,7 @@ class HardDrivesTest < ApplicationSystemTestCase
     visit hard_drives_url
     click_on "New Hard Drive"
 
-    fill_in "Name", with: @hard_drife.name
+    fill_in "Name", with: @hard_drive.name
     click_on "Create Hard drive"
 
     assert_text "Hard drive was successfully created"
@@ -25,7 +25,7 @@ class HardDrivesTest < ApplicationSystemTestCase
     visit hard_drives_url
     click_on "Edit", match: :first
 
-    fill_in "Name", with: @hard_drife.name
+    fill_in "Name", with: @hard_drive.name
     click_on "Update Hard drive"
 
     assert_text "Hard drive was successfully updated"

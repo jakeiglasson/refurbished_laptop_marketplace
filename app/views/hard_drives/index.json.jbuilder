@@ -1,1 +1,1 @@
-json.array! @hard_drives, partial: "hard_drives/hard_drife", as: :hard_drife
+json.array! @hard_drives, partial: "hard_drives/hard_drive", as: :hard_drive

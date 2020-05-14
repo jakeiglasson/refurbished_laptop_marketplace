@@ -53,21 +53,13 @@ puts "SELLER REQUESTED USERS CREATED: #{arr[2]}"
 
 LaptopBrand.delete_all
 
-arr = ['apple','dell','lenovo', 'hp', 'asus', 'microsoft', 'msi', 'razer', 'alienware']
+arr = ['Apple','Dell','Lenovo', 'HP', 'Asus', 'Microsoft', 'MSI', 'Razer', 'Alienware']
 arr.each_with_index {|v, i|
     LaptopBrand.create(
       name: arr[i]
     )
     puts "LaptopBrand #{LaptopBrand.last.name} created"
   }
-
-
-# 5.times do
-#   LaptopBrand.create(
-#     name: Faker::Company.name
-#   )
-#   puts "LaptopBrand #{LaptopBrand.last.name} created"
-# end
 
 # Grade GENERATION -----------------------------------------------------------------
 
@@ -98,3 +90,50 @@ arr.each_with_index {|v, i|
     )
     puts "Cpu #{Cpu.last.name} created"
   }
+
+# Ram GENERATION -----------------------------------------------------------------
+
+Ram.delete_all
+
+arr = ['4gb','8gb','16gb','32gb','64gb']
+arr.each_with_index {|v, i|
+    Ram.create(
+      name: arr[i],
+    )
+    puts "Ram #{Ram.last.name} created"
+  }
+
+# HardDrive GENERATION -----------------------------------------------------------------
+
+HardDrive.delete_all
+
+arr = ['256gb','512gb','1tb','2tb']
+arr.each_with_index {|v, i|
+    HardDrive.create(
+      name: arr[i],
+    )
+    puts "HardDrive #{Ram.last.name} created"
+  }
+
+# Laptop GENERATION -----------------------------------------------------------------
+
+Laptop.delete_all
+arr = ('a'..'z').to_a
+
+10.times do
+  price = rand(300..1000)
+  Laptop.create(
+    user_id: User.pluck(:id).sample,
+    brand_id: LaptopBrand.pluck(:id).sample,
+    grade_id: Grade.pluck(:id).sample,
+    cpu_id: Cpu.pluck(:id).sample,
+    ram_id: Ram.pluck(:id).sample,
+    hard_drive_id: HardDrive.pluck(:id).sample,
+    model: "#{Faker::Space.nasa_space_craft} #{arr.sample.capitalize()}#{Faker::Number.number(digits: 4)}",
+    price: price,
+    sold_status: "false"
+  )
+  puts "Laptop #{LaptopBrand.find(Laptop.last.brand_id).name} #{Laptop.last.model} created"
+end
+
+

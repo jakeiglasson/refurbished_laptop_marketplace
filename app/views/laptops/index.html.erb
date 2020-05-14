@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>User</th>
+      <th>User (SELLER)</th>
       <th>Brand</th>
       <th>Grade</th>
       <th>Cpu</th>
@@ -23,12 +23,12 @@
     <% @laptops.each do |laptop| %>
       <tr>
         <td><%= laptop.id %></td>
-        <td><%= laptop.user_id %></td>
-        <td><%= laptop.brand_id %></td>
-        <td><%= laptop.grade %></td>
-        <td><%= laptop.cpu_id %></td>
-        <td><%= laptop.ram_id %></td>
-        <td><%= laptop.hard_drive_id %></td>
+        <td><%= User.find(laptop.user_id).name %></td>
+        <td><%= LaptopBrand.find(laptop.brand_id).name %></td>
+        <td><%= Grade.find(laptop.grade_id).name %></td>
+        <td><%= Cpu.find(laptop.cpu_id).name %></td>
+        <td><%= Ram.find(laptop.ram_id).name %></td>
+        <td><%= HardDrive.find(laptop.hard_drive_id).name %></td>
         <td><%= laptop.model %></td>
         <td><%= laptop.price %></td>
         <td><%= laptop.sold_status %></td>

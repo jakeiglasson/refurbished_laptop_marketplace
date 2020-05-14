@@ -1,1 +1,1 @@
-json.partial! "hard_drives/hard_drife", hard_drife: @hard_drife
+json.partial! "hard_drives/hard_drive", hard_drive: @hard_drive

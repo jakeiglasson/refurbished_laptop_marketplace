@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_093200) do
+ActiveRecord::Schema.define(version: 2020_05_14_015143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_093200) do
   create_table "laptops", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "brand_id"
-    t.string "grade"
+    t.string "grade_id"
     t.bigint "cpu_id"
     t.bigint "ram_id"
     t.bigint "hard_drive_id"
