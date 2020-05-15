@@ -16,9 +16,17 @@
     <%= form.collection_select(:user_id, User.all, :id, :name, prompt: true) %>
   </div>
 
+  <!-- GETS ALL LAPTOP REGARDLESS OF SOLD STATUS -->
+  <!--
   <div class="field">
     <%= form.label :laptop_id %>
     <%= form.collection_select(:laptop_id, Laptop.all, :id, :model, prompt: true) %>
+  </div> -->
+
+  <!-- GETS ALL LAPTOPS THAT ARENT SOLD -->
+  <div class="field">
+    <%= form.label :laptop_id %>
+    <%= form.collection_select(:laptop_id, Laptop.where(sold_status: 'false'), :id, :model, prompt: true) %>
   </div>
 
   <div class="actions">
