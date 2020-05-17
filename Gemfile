@@ -60,3 +60,5 @@ gem "faker", "~> 2.11"
 gem "devise", "~> 4.7"
 
 gem 'rails_admin', '~> 2.0.2'
+
+gem "cancancan", "~> 3.1"
