@@ -1,4 +1,6 @@
 class LaptopOrdersController < ApplicationController
+  
+  before_action :authenticate_user!
   before_action :set_laptop_order, only: [:show, :edit, :update, :destroy]
 
   # GET /laptop_orders
