@@ -1,15 +1,30 @@
 RailsAdmin.config do |config|
 
+  config.parent_controller = 'ApplicationController'
+
+  config.authorize_with do
+    redirect_to main_app.root_path unless current_user.is_admin?
+  end
+
+  # config.authorize_with do
+  #   if user_signed_in?
+  #     redirect_to main_app.root_path unless current_user.admin == true
+  #   else
+  #     redirect_to main_app.root_path
+  #   end
+  # end
+
   ### Popular gems integration
 
+  # This is needed so that cancancan has access to user params - jake
   ## == Devise ==
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :user
-  # end
-  # config.current_user_method(&:current_user)
+  config.authenticate_with do
+    warden.authenticate! scope: :user
+  end
+  config.current_user_method(&:current_user)
 
   ## == CancanCan ==
-  # config.authorize_with :cancancan
+  config.authorize_with :cancancan
 
   ## == Pundit ==
   # config.authorize_with :pundit

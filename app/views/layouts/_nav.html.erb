@@ -53,7 +53,7 @@
     <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <% if user_signed_in? %>
-          <%= "Hello! #{current_user.name}, EMAIL: #{current_user.email}, ID: #{current_user.id}" %>
+          <%= "Hello! ID: #{current_user.id}, NAME: #{current_user.name}, EMAIL: #{current_user.email}, SELLER STATUS: #{current_user.seller}, ADMIN: #{current_user.admin} " %>
         <% end %> 
       </div>
       <div class="navbar-nav">
