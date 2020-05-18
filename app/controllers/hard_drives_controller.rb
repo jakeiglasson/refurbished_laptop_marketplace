@@ -1,4 +1,5 @@
 class HardDrivesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_hard_drive, only: [:show, :edit, :update, :destroy]
 
   # GET /hard_drives

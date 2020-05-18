@@ -34,7 +34,7 @@
 
 <br>
 
-<% if current_user.admin? %>
+<% if current_or_guest_user.admin? %>
   <%= link_to 'New User', "./admin/user/new" %>
 <% end %>
 

@@ -1,4 +1,5 @@
 class CpusController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_cpu, only: [:show, :edit, :update, :destroy]
 
   # GET /cpus

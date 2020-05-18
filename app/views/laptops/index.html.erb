@@ -48,4 +48,9 @@
 
 <br>
 
-<%= link_to 'New Laptop', new_laptop_path %>
+<% if current_or_guest_user.guest == false%>
+  <% if current_user.seller == true %>
+    <%= link_to 'New Laptop', new_laptop_path %>
+  <% end %>
+<% end %>
+

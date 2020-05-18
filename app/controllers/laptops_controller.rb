@@ -1,4 +1,6 @@
 class LaptopsController < ApplicationController
+  load_and_authorize_resource
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_laptop, only: [:show, :edit, :update, :destroy]
 
   # GET /laptops
@@ -15,6 +17,7 @@ class LaptopsController < ApplicationController
   # GET /laptops/new
   def new
     @laptop = Laptop.new
+    # authorize! :create, @laptop
   end
 
   # GET /laptops/1/edit
