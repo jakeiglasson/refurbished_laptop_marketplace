@@ -52,5 +52,7 @@
   <%= @laptop.sold_status %>
 </p>
 
-<%= link_to 'Edit', edit_laptop_path(@laptop) %> |
+<% if @laptop.sold_status != "true" && @laptop.id == current_or_guest_user.id %>
+  <%= link_to 'Edit', edit_laptop_path(@laptop) %> |
+<% end %>
 <%= link_to 'Back', laptops_path %>

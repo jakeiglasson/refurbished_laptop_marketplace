@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -6,13 +7,20 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-    @laptop_oders = LaptopOrder.all
+    render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    arr = current_user.laptop_orders.pluck(:laptop_id)
+    @purchased_laptops = Laptop.find(arr)
+
+    if current_user.seller == "true"
+      arr = current_user.laptops.pluck(:id)
+      @listings = Laptop.find(arr)
+    end
+
   end
 
   # GET /users/new

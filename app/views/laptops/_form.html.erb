@@ -16,10 +16,12 @@
     <%= form.file_field :picture, accept: 'image/png,image/gif,image/jpeg,image/jpg' %>
   </div>
 
+  <!-- 
   <div class="field">
     <%= form.label :user_id %>
     <%= form.collection_select(:user_id, User.where(seller: 'true'), :id, :name, prompt: true) %>
   </div>
+  -->
 
   <div class="field">
     <%= form.label :brand_id %>

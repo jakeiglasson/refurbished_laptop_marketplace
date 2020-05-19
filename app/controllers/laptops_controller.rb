@@ -6,7 +6,8 @@ class LaptopsController < ApplicationController
   # GET /laptops
   # GET /laptops.json
   def index
-    @laptops = Laptop.all
+    @unsold_laptops = Laptop.where(sold_status: "false")
+    @sold_laptops = Laptop.where(sold_status: "true")
   end
 
   # GET /laptops/1
@@ -28,6 +29,7 @@ class LaptopsController < ApplicationController
   # POST /laptops.json
   def create
     @laptop = Laptop.new(laptop_params)
+    @laptop.user_id = current_user.id
 
     respond_to do |format|
       if @laptop.save
