@@ -17,6 +17,10 @@
       <%= render "layouts/admin_nav" %>
     <% end %>
 
+    <% if user_signed_in? %>
+      <%= "Hello! ID: #{current_or_guest_user.id}, NAME: #{current_or_guest_user.name}, EMAIL: #{current_or_guest_user.email}, SELLER STATUS: #{current_or_guest_user.seller}, ADMIN: #{current_or_guest_user.admin} " %>
+    <% end %> 
+
     
 
     <%= render "layouts/alerts" %>

@@ -5,3 +5,11 @@
 .laptop-image {
   max-width: 50px;
 }
+
+.laptop-backup-image {
+  background: url(image-path("laptop.png"));
+  min-width: 50px;
+  min-height: 50px;
+  background-size: cover;
+  background-position: left;
+}

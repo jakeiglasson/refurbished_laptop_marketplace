@@ -1,11 +1,19 @@
+<h3>INFO</h3>
+<ul>
+  <li>SELLER STATUS: <%= @user.seller %></li>
+</ul>
+
 <h3> ACTIONS </H3>
 <ul>
   <li><%= link_to "EDIT PROFILE", edit_user_registration_path %></li>
+  <% if @user.seller == "false"%>
+    <li><%= link_to 'REQUEST SELLER STATUS', user_path(user: {seller: "requested"}), method: :patch%></li>
+  <% end %>
 </ul>
 
 
 
-<h3>PURCHASED</h3>
+<h3>LAPTOPS PURCHASED</h3>
 
 <table>
   <thead>
@@ -31,7 +39,9 @@
         <td>
           <% if laptop.picture.attached? %>
             <%= image_tag laptop.picture, class: "laptop-image" %>
-          <% end %>             
+          <% else %>
+            <div class="laptop-backup-image"></div>
+          <% end %>
         </td>
         <td><%= laptop.id %></td>
         <td><%= User.find(laptop.user_id).name %></td>
@@ -51,9 +61,9 @@
 
 <% if current_user.seller == "true"%>
 
-  <h3>LISTINGS</h3>
+  <h3>LAPTOP LISTINGS</h3>
 
-  <h3> - UNSOLD</h3>
+  <h5> - UNSOLD</h5>
 
   <table>
     <thead>
@@ -80,7 +90,9 @@
             <td>
               <% if laptop.picture.attached? %>
                 <%= image_tag laptop.picture, class: "laptop-image" %>
-              <% end %>             
+              <% else %>
+                <div class="laptop-backup-image"></div>
+              <% end %>
             </td>
             <td><%= laptop.id %></td>
             <td><%= User.find(laptop.user_id).name %></td>
@@ -103,7 +115,7 @@
     </tbody>
   </table>
 
-  <h3> - SOLD</h3>
+  <h5> - SOLD</h5>
 
   <table>
     <thead>
@@ -130,7 +142,9 @@
             <td>
               <% if laptop.picture.attached? %>
                 <%= image_tag laptop.picture, class: "laptop-image" %>
-              <% end %>             
+              <% else %>
+                <div class="laptop-backup-image"></div>
+              <% end %>
             </td>
             <td><%= laptop.id %></td>
             <td><%= User.find(laptop.user_id).name %></td>
@@ -152,5 +166,4 @@
 <% end %>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+

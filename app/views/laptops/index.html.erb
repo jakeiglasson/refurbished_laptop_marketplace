@@ -34,7 +34,9 @@
         <td>
           <% if laptop.picture.attached? %>
             <%= image_tag laptop.picture, class: "laptop-image" %>
-          <% end %>             
+          <% else %>
+            <div class="laptop-backup-image"></div>
+          <% end %>
         </td>
         <td><%= laptop.id %></td>
         <td><%= User.find(laptop.user_id).name %></td>
@@ -87,7 +89,9 @@
         <td>
           <% if laptop.picture.attached? %>
             <%= image_tag laptop.picture, class: "laptop-image" %>
-          <% end %>             
+          <% else %>
+            <div class="laptop-backup-image"></div>
+          <% end %>
         </td>
         <td><%= laptop.id %></td>
         <td><%= User.find(laptop.user_id).name %></td>

@@ -1,40 +1,53 @@
+<table>
+  <thead>
+    <tr>
+      <th>Picture:</th>
+    </tr>
+  </thead>
 
+  <tbody>
+
+      <tr>
+        <td>
+          <% if @laptop.picture.attached? %>
+            <%= image_tag @laptop.picture, class: "laptop-image" %>
+          <% else %>
+            <div class="laptop-backup-image"></div>
+          <% end %>
+        </td>
+      </tr>
+
+  </tbody>
+</table>
 
 <p>
-  <strong>Picture:</strong> <br>
-  <% if @laptop.picture.attached? %>
-    <%= image_tag @laptop.picture %>
-  <% end %> 
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @laptop.user_id %>
+  <strong>Seller:</strong>
+  <%= User.find(@laptop.user_id).name %>
 </p>
 
 <p>
   <strong>Brand:</strong>
-  <%= @laptop.brand_id %>
+  <%= LaptopBrand.find(@laptop.brand_id).name %>
 </p>
 
 <p>
   <strong>Grade:</strong>
-  <%= @laptop.grade_id %>
+  <%= Grade.find(@laptop.grade_id).name %>
 </p>
 
 <p>
   <strong>Cpu:</strong>
-  <%= @laptop.cpu_id %>
+  <%= Cpu.find(@laptop.cpu_id).name %>
 </p>
 
 <p>
   <strong>Ram:</strong>
-  <%= @laptop.ram_id %>
+  <%= Ram.find(@laptop.ram_id).name %>
 </p>
 
 <p>
   <strong>Hard drive:</strong>
-  <%= @laptop.hard_drive_id %>
+  <%= HardDrive.find(@laptop.hard_drive_id).name %>
 </p>
 
 <p>
@@ -44,7 +57,7 @@
 
 <p>
   <strong>Price:</strong>
-  <%= @laptop.price %>
+  $<%= @laptop.price %>
 </p>
 
 <p>
