@@ -1,53 +1,53 @@
 # User GENERATION -----------------------------------------------------------------
 
-User.delete_all
+# User.delete_all
 
-n1 = 10**77
-n2 = 2*n1
-arr = [0,0,0]
+# n1 = 10**77
+# n2 = 2*n1
+# arr = [0,0,0]
 
-#generate users
-20.times do 
-  seller_chance = rand(1..4)
-  #50% chance generate normal user
-  if seller_chance == 1 or seller_chance == 4
-    User.create(
-      name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
-      email: Faker::Internet.email,
-      password: rand(n1..n2).to_s(36),
-      admin: "false",
-      seller: 0
-    )
-    puts "Normal user created"
-    arr[0] += 1
-  #25% chance generate seller user
-  elsif seller_chance == 2
-    User.create(
-      name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
-      email: Faker::Internet.email,
-      password: rand(n1..n2).to_s(36),
-      admin: "false",
-      seller: 1
-    )
-    puts "Seller user created"
-    arr[1] += 1
-  #25% chance generate seller requested user
-  elsif seller_chance == 3
-    User.create(
-      name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
-      email: Faker::Internet.email,
-      password: rand(n1..n2).to_s(36),
-      admin: "false",
-      seller: 2
-    )
-    puts "Seller requested user created"
-    arr[2] += 1
-  end
-end
+# #generate users
+# 20.times do 
+#   seller_chance = rand(1..4)
+#   #50% chance generate normal user
+#   if seller_chance == 1 or seller_chance == 4
+#     User.create(
+#       name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
+#       email: Faker::Internet.email,
+#       password: rand(n1..n2).to_s(36),
+#       admin: "false",
+#       seller: 0
+#     )
+#     puts "Normal user created"
+#     arr[0] += 1
+#   #25% chance generate seller user
+#   elsif seller_chance == 2
+#     User.create(
+#       name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
+#       email: Faker::Internet.email,
+#       password: rand(n1..n2).to_s(36),
+#       admin: "false",
+#       seller: 1
+#     )
+#     puts "Seller user created"
+#     arr[1] += 1
+#   #25% chance generate seller requested user
+#   elsif seller_chance == 3
+#     User.create(
+#       name: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
+#       email: Faker::Internet.email,
+#       password: rand(n1..n2).to_s(36),
+#       admin: "false",
+#       seller: 2
+#     )
+#     puts "Seller requested user created"
+#     arr[2] += 1
+#   end
+# end
 
-puts "NORMAL USERS CREATED: #{arr[0]}"
-puts "SELLER USERS CREATED: #{arr[1]}"
-puts "SELLER REQUESTED USERS CREATED: #{arr[2]}"
+# puts "NORMAL USERS CREATED: #{arr[0]}"
+# puts "SELLER USERS CREATED: #{arr[1]}"
+# puts "SELLER REQUESTED USERS CREATED: #{arr[2]}"
 
 # LaptopBrand GENERATION -----------------------------------------------------------------
 
@@ -121,42 +121,42 @@ arr.each_with_index {|v, i|
 
 # Laptop GENERATION -----------------------------------------------------------------
 
-Laptop.delete_all
-arr = ('a'..'z').to_a
+# Laptop.delete_all
+# arr = ('a'..'z').to_a
 
-20.times do
-  price = rand(300..1000)
-  brand = LaptopBrand.pluck(:id).sample
-  a = Laptop.new(
-    user_id: User.where(seller: "true").pluck(:id).sample,
-    brand_id: brand,
-    grade_id: Grade.pluck(:id).sample,
-    cpu_id: Cpu.pluck(:id).sample,
-    ram_id: Ram.pluck(:id).sample,
-    hard_drive_id: HardDrive.pluck(:id).sample,
-    model: "#{LaptopBrand.find(brand).name} #{Faker::Space.nasa_space_craft} #{arr.sample.capitalize()}#{Faker::Number.number(digits: 4)}",
-    price: price,
-    sold_status: "false"
-  )
-  a.picture.attach(io: File.open('./app/assets/images/laptop.png'), filename: 'laptop.png')
-  a.save
-  puts "Laptop #{Laptop.last.model} created"
-end
+# 20.times do
+#   price = rand(300..1000)
+#   brand = LaptopBrand.pluck(:id).sample
+#   a = Laptop.new(
+#     user_id: User.where(seller: "true").pluck(:id).sample,
+#     brand_id: brand,
+#     grade_id: Grade.pluck(:id).sample,
+#     cpu_id: Cpu.pluck(:id).sample,
+#     ram_id: Ram.pluck(:id).sample,
+#     hard_drive_id: HardDrive.pluck(:id).sample,
+#     model: "#{LaptopBrand.find(brand).name} #{Faker::Space.nasa_space_craft} #{arr.sample.capitalize()}#{Faker::Number.number(digits: 4)}",
+#     price: price,
+#     sold_status: "false"
+#   )
+#   a.picture.attach(io: File.open('./app/assets/images/laptop.png'), filename: 'laptop.png')
+#   a.save
+#   puts "Laptop #{Laptop.last.model} created"
+# end
 
 # LaptopOrder GENERATION -----------------------------------------------------------------
 
-LaptopOrder.delete_all
+# LaptopOrder.delete_all
 
-arr = Laptop.pluck(:id)
-10.times do
-  sold_laptop = arr.sample
-  LaptopOrder.create(
-    user_id: User.where(seller: "false").pluck(:id).sample,
-    laptop_id: sold_laptop
-  )
-  Laptop.find(sold_laptop).update(sold_status: "true")
-  arr -= [sold_laptop]
-  puts "LaptopOrder created"
-end
+# arr = Laptop.pluck(:id)
+# 10.times do
+#   sold_laptop = arr.sample
+#   LaptopOrder.create(
+#     user_id: User.where(seller: "false").pluck(:id).sample,
+#     laptop_id: sold_laptop
+#   )
+#   Laptop.find(sold_laptop).update(sold_status: "true")
+#   arr -= [sold_laptop]
+#   puts "LaptopOrder created"
+# end
 
 
