@@ -4,17 +4,28 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
+    alias_action :create, :read, :update, :destroy, to: :crud
     # can :read, :all                 # allow everyone to read everything
 
     user ||= User.new # guest user (not logged in)
+    can :manage, User, id: user.id #CRUD functionality for users own params - jake
+
+    if user.guest == false
+      can [:create, :read], [LaptopOrder]
+    end
+
+    if user.seller == "true"
+      can :manage, Laptop, user_id: user.id
+    else
+      can :read, Laptop
+    end
+
     if user.admin?
       can :manage, :all
-    elsif user.seller?
-      can :manage, Laptops
-    else
-      can :read, :all
     end
+
+
+    
 
     # if user.admin?
     #   can :manage, :all

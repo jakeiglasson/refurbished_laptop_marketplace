@@ -1,40 +1,155 @@
-
-
+<h3> ACTIONS </H3>
 <ul>
-  <li>
-    NAME: <%= @user.name %>
-  </li>
-  <li>
-    EMAIL: <%= @user.email %>
-  </li>
-  <li>
-    PASSWORD: <%= @user.password %>
-  </li>
-  <li>
-    ADMIN: <%= @user.admin %>
-  </li>
-  <li>
-    SELLER: <%= @user.seller %>
-  </li>
+  <li><%= link_to "EDIT PROFILE", edit_user_registration_path %></li>
 </ul>
 
-<h3>Purchases</h3>
 
-<% arr = LaptopOrder.where(user_id: @user.id).pluck(:laptop_id) %>
 
-<ul>
-<% if !arr.empty? %>
-  <%  for i in arr%>
-    <% if i != nil %>
-      <li>
-        <%= Laptop.find(i).model %>
-      </li>
+<h3>PURCHASED</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Picture</th>
+      <th>ID</th>
+      <th>Seller</th>
+      <th>Brand</th>
+      <th>Grade</th>
+      <th>Cpu</th>
+      <th>Ram</th>
+      <th>Hard drive</th>
+      <th>Model</th>
+      <th>Price</th>
+      <th>Sold Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchased_laptops.each do |laptop| %>
+      <tr>
+        <td>
+          <% if laptop.picture.attached? %>
+            <%= image_tag laptop.picture, class: "laptop-image" %>
+          <% end %>             
+        </td>
+        <td><%= laptop.id %></td>
+        <td><%= User.find(laptop.user_id).name %></td>
+        <td><%= LaptopBrand.find(laptop.brand_id).name %></td>
+        <td><%= Grade.find(laptop.grade_id).name %></td>
+        <td><%= Cpu.find(laptop.cpu_id).name %></td>
+        <td><%= Ram.find(laptop.ram_id).name %></td>
+        <td><%= HardDrive.find(laptop.hard_drive_id).name %></td>
+        <td><%= laptop.model %></td>
+        <td><%= laptop.price %></td>
+        <td><%= laptop.sold_status %></td>
+        <td><%= link_to 'Show', laptop %></td>
+      </tr>
     <% end %>
-  <% end %>
-<% else %>
-  <li>no purchases</li>
+  </tbody>
+</table>
+
+<% if current_user.seller == "true"%>
+
+  <h3>LISTINGS</h3>
+
+  <h3> - UNSOLD</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Picture</th>
+        <th>ID</th>
+        <th>Seller</th>
+        <th>Brand</th>
+        <th>Grade</th>
+        <th>Cpu</th>
+        <th>Ram</th>
+        <th>Hard drive</th>
+        <th>Model</th>
+        <th>Price</th>
+        <th>Sold Status</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @listings.each do |laptop| %>
+        <% if laptop.sold_status == "false" %>
+          <tr>
+            <td>
+              <% if laptop.picture.attached? %>
+                <%= image_tag laptop.picture, class: "laptop-image" %>
+              <% end %>             
+            </td>
+            <td><%= laptop.id %></td>
+            <td><%= User.find(laptop.user_id).name %></td>
+            <td><%= LaptopBrand.find(laptop.brand_id).name %></td>
+            <td><%= Grade.find(laptop.grade_id).name %></td>
+            <td><%= Cpu.find(laptop.cpu_id).name %></td>
+            <td><%= Ram.find(laptop.ram_id).name %></td>
+            <td><%= HardDrive.find(laptop.hard_drive_id).name %></td>
+            <td><%= laptop.model %></td>
+            <td><%= laptop.price %></td>
+            <td><%= laptop.sold_status %></td>
+            <td><%= link_to 'Show', laptop %></td>
+            <td><%= link_to 'Edit', edit_laptop_path(laptop) %></td>
+            <td>
+              <%= link_to 'Remove', laptop, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h3> - SOLD</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Picture</th>
+        <th>ID</th>
+        <th>Seller</th>
+        <th>Brand</th>
+        <th>Grade</th>
+        <th>Cpu</th>
+        <th>Ram</th>
+        <th>Hard drive</th>
+        <th>Model</th>
+        <th>Price</th>
+        <th>Sold Status</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @listings.each do |laptop| %>
+        <% if laptop.sold_status == "true" %>
+          <tr>
+            <td>
+              <% if laptop.picture.attached? %>
+                <%= image_tag laptop.picture, class: "laptop-image" %>
+              <% end %>             
+            </td>
+            <td><%= laptop.id %></td>
+            <td><%= User.find(laptop.user_id).name %></td>
+            <td><%= LaptopBrand.find(laptop.brand_id).name %></td>
+            <td><%= Grade.find(laptop.grade_id).name %></td>
+            <td><%= Cpu.find(laptop.cpu_id).name %></td>
+            <td><%= Ram.find(laptop.ram_id).name %></td>
+            <td><%= HardDrive.find(laptop.hard_drive_id).name %></td>
+            <td><%= laptop.model %></td>
+            <td><%= laptop.price %></td>
+            <td><%= laptop.sold_status %></td>
+            <td><%= link_to 'Show', laptop %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
 <% end %>
-</ul>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

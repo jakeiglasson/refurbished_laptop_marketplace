@@ -1,5 +1,5 @@
 class LaptopOrdersController < ApplicationController
-  
+  load_and_authorize_resource
   before_action :authenticate_user!
   before_action :set_laptop_order, only: [:show, :edit, :update, :destroy]
 
@@ -33,7 +33,7 @@ class LaptopOrdersController < ApplicationController
         Laptop.find(laptop_order_params[:laptop_id]).update(
           sold_status: "true"
         )
-        format.html { redirect_to @laptop_order, notice: 'Laptop order was successfully created.' }
+        format.html { redirect_to Laptop, notice: 'Laptop order was successfully created.' }
         format.json { render :show, status: :created, location: @laptop_order }
       else
         format.html { render :new }
@@ -74,6 +74,6 @@ class LaptopOrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def laptop_order_params
-      params.require(:laptop_order).permit(:user_id, :laptop_id)
+      params.permit(:user_id, :laptop_id)
     end
 end
