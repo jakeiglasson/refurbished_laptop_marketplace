@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource # run cancancan authorization before every method - jake
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -13,7 +13,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    # get an array of IDs for all laptops the current user has purchased - jake 
     arr = current_user.laptop_orders.pluck(:laptop_id)
+    # from the above array of IDs find all laptops that match those IDs - jake
     @purchased_laptops = Laptop.find(arr)
 
     if current_user.seller == "true"

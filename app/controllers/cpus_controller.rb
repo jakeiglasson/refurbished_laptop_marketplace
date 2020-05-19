@@ -1,5 +1,5 @@
 class CpusController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource # run cancancan authorization before every method - jake
   before_action :authenticate_user!
   before_action :set_cpu, only: [:show, :edit, :update, :destroy]
 

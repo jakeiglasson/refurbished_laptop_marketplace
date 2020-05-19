@@ -1,12 +1,14 @@
 class LaptopsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource # run cancancan authorization before every method - jake
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_laptop, only: [:show, :edit, :update, :destroy]
 
   # GET /laptops
   # GET /laptops.json
   def index
+    # get all laptops that ARENT sold - jake
     @unsold_laptops = Laptop.where(sold_status: "false")
+    # get all laptops that ARE sold - jake
     @sold_laptops = Laptop.where(sold_status: "true")
   end
 

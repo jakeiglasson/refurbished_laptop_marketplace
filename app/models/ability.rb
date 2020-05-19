@@ -10,16 +10,19 @@ class Ability
     user ||= User.new # guest user (not logged in)
     can :manage, User, id: user.id #CRUD functionality for users own params - jake
 
+    # If user isn't a guest they can create and read laptop orders (read is needed so an error isnt thrown after an order is placed) - jake
     if user.guest == false
       can [:create, :read], [LaptopOrder]
     end
 
+    # If user is a seller they can create new laptops while maintaing full crud over the laptops they create otherwise the user can view all laptops - jake
     if user.seller == "true"
       can :manage, Laptop, user_id: user.id
     else
       can :read, Laptop
     end
 
+    # grant admins full access to all objects - jake
     if user.admin?
       can :manage, :all
     end
