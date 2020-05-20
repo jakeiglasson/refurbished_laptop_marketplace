@@ -2,11 +2,11 @@
 
 ## R7 Identification of the problem you are trying to solve by building this particular marketplace app.
 
-A website for refurbished laptops to fulfill the need for high end laptops that are affordable
-  
+Good performance laptops are too expensive. Cheap laptops have low performance. The problem is individuals need access to powerful laptops at an affordable price.
+   
 ## R8 Why is it a problem that needs solving?
 
-individuals who are tight on money still need high end laptops. Newer high end laptops cost too much. 
+Individuals who are tight on money still need high performance laptops. Newer high end laptops cost too much.  By having access to refurbished laptops, individuals will be able to afford high performance laptops at an affordable price.
 
 ## R9 A link (URL) to your deployed app (i.e. website)
 
@@ -21,7 +21,7 @@ https://github.com/jakeiglasson/refurbished_laptop_marketplace
 
 Purpose:
 
-* Allow seller to sell their refurbished laptops. Allow buyers who need high end laptops at an affordable price to be buy these refurbished laptops.
+* Allow sellers to sell their refurbished laptops. Allow buyers who need high end laptops at an affordable price to buy these refurbished laptops.
 
 Functionality / features:
 
@@ -67,13 +67,25 @@ Tech stack (e.g. html, css, deployment platform, etc):
 
 ## R12 User stories for your app
 
-buyer:
+### As a user (buyer and seller) i want to: 
 
-John needs a new laptop, he doesn't want to spend a lot of money on a new laptop but still wants a decent spec laptop that will be reliable. John discovers that you can get high grade refurbished laptops at a fraction of the cost new laptops go for with the same specs. John looks for a website that specializes in refurbished laptops and finds our app. John signs up for an account and buys a refurbished laptop.
+* Update my existing details so that current information is up to date 
 
-seller:
+### As a seller i want to: 
 
-Jane has a laptop that's a few years old, has a few scuffs and damages, in the current condition its in she doesn't believe she would be able to sell it and get a fair price. Jane discovers that she can send her laptop to our company to have the laptop refurbished and sold. Jane creates an account with us, sends in her laptop (the laptop is refurbished by us into a sell-able condition), once refurbished her laptop appears under her account ready to be sold. Once sold our company takes a cut and Jane receives her money minus shipping costs.
+* Post an ad for a refurbished laptop so buyers can purchase it
+* Update an existing (unsold) ad in case an error was made
+* Remove an existing ad in case that laptop is no longer available
+* Access information on past sales so i have metrics on my sales
+
+### As a buyer i want to:
+
+* Browse all refurbished laptops for sale so that i can see what is available
+* Request a seller account so i can sell refurbished laptops
+* Browse laptops by brands so i can find a specific laptop brand to buy
+* Filter available laptops by their components so i can find a laptop that matches my specification requirements
+* Buy a refurbished laptop so that i have a powerful laptop that is affordable
+* Sign up for an account so i know my information is secure and i can track my orders
 
 ## R13 Wireframes:
 
@@ -151,29 +163,31 @@ Rails Admin:
 
 ### USERS:
 
-Each user may have many laptop orders
+The Users model has the following relationships:
 
-Each user may have many laptops (only if theyre a seller)
+* Each user may have many laptop orders.
+
+* Each user may have many laptops (only if theyre a seller).
 
 ### LAPTOP BRANDS:
 
-Each laptop brand has many laptops
+* Each laptop brand has many laptops.
 
 ### GRADES:
 
-Each grade has many laptops
+* Each grade has many laptops.
 
 ### CPUS:
 
-Each CPU has many laptops
+* Each CPU has many laptops.
 
 ### RAM:
 
-Each RAM has many laptops
+* Each RAM has many laptops.
 
 ### HARD DRIVES:
 
-Each Hard Drive has many laptops
+* Each Hard Drive has many laptops.
 
 ### LAPTOPS:
 
@@ -181,41 +195,71 @@ Each Laptop has one:
 
 * user_id (foreign key in Users model):  
 	
-	This relation represents which User owns the laptop (the seller)
+	This relation represents which User owns the laptop (the seller).
 
 * brand_id (foreign key in Laptop Brands model):
 	
-	This relation represents what Brand a laptop has (i.e. Apple, Windows, Dell)
+	This relation represents what Brand a laptop has (i.e. Apple, Windows, Dell).
 
 * grade_id (foreign key in Grades model)  
 	
-	This relation represents the Grade a laptop has (The used condition of the laptop)
+	This relation represents the Grade a laptop has (The used condition of the laptop).
 	
 * cpu_id (foreign key in CPUS model):
 	
-	This relation represents what CPU a laptop has (i.e. i3, i7, amd)
+	This relation represents what CPU a laptop has (i.e. i3, i7, amd).
 
 * ram_id (foreign key in RAM model):
 	
-	This relation represents how much RAM a laptop has (i.e. 4gb, 8gb, 16gb)
+	This relation represents how much RAM a laptop has (i.e. 4gb, 8gb, 16gb).
 
 * hard\_drive_id (foreign key in CPUS model):
 	
-	This relation represents the size of the internal Hard Drive of a given laptop has (i.e. 128gb, 256gb, 1tb)
-
+	This relation represents the size of the internal Hard Drive of a given laptop has (i.e. 128gb, 256gb, 1tb).
 
 ### LAPTOP ORDERS:
 
 Each entry in Laptop Order has one user\_id and one laptop\_id.  
   
-The user_id corresponds to the user who has purchased the laptop, laptop_id corresponds to that laptop.
+The user\_id corresponds to the user who has purchased the laptop, laptop_id corresponds to that laptop.
 
+## R18 Discuss why you implemented your different tables and relations, explain how they work:
 
+Users:
 
+The Users table was implemented to keep a record of all users registered in the app. 
 
-## R18 Discuss the database relations to be implemented in your application
+The Users table allows for the following information: name, email, password, seller status and admin status.
+
+When a new user registers, the name, email and password given are entered into the Users table inside the database. Admin and seller status are set to false.
+
+Laptops:
+
+The laptops table was implemented to keep a record of all Laptops created inside the app. 
+
+The laptops table allows for the following information: owner / seller (connected through a foreign key to the Users table), model number, price and sold status. 
+  
+The laptops table also allows for the following components that belong to a laptop: brand, grade, CPU, RAM and hard-drive.
+
+The relationship connecting a User (owner / seller) to a Laptop was created so that the app could track which user created which laptop so that information regarding that laptop could be communicated to the seller.
+
+Laptop Orders:
+
+The Laptop Orders table was implemented to keep track of which users have purchased laptops. 
+
+The laptop Orders table allows for the following information: a user_id connecting to the Users table as well as a laptop_id connecting to the Laptops table. 
+
+For each entry these keys relate such that the user_id is the user who purchased the laptop denoted by laptop_id.
+
+Laptop Components:
+
+The laptop components (brands, grades, CPUs, RAM, hard-drives) tables were implemented so that each one could be easily modified and updated.  
+  
+By implementing each component as its own table instead of as a column inside of Laptops the app isn't filled with repeated unsanitized data.
 
 ## R19	Provide your database schema design
+
+DBML file supplied in docs
 
 ## R20	Describe the way tasks are allocated and tracked in your project
 
