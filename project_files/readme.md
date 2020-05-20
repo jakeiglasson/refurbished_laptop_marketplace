@@ -91,15 +91,23 @@ Mobile and Tablet Wireframes:
 
 ## R15 Explain the different high-level components (abstractions) in your app:
 
-Active Record:
+### Active Record:
 
 Active Record is a high level component that facilitates easy access and modifications to our database. Models inherit from Active Record which Inherits from the base facilitating the use of SQL commands.
 
-Essentially this means that inside our models, active record can be called to perform actions such as create, read, update and delete. In the background Active Record executes the SQL to perform modifications requested in the model.
+Essentially this means that inside our models, active record can be called to perform actions such as create, read, update and delete. In the background Active Record executes the SQL to perform modifications requested in the model. 
 
-Active Storage:
+### Active Storage:
 
-Active view / Action View:
+Active Storage is a high level component that facilitates the ability to upload files easily. It facilitates uploading these files to could storage services such as Amazon S3, Google Cloud Storage, or Microsoft Azure Storage. These uploaded files are attached to Active Record objects.
+
+Active storage also supports a disk based service allowing the storage of files locally for development and testing.
+
+### Action View:
+
+Action View is one component that handles web requests. It compiles the responses received from Action Controller (the other component of web requests) which is responsible for communicating with the database and performing CRUD operations on said database.  
+  
+Action View templates are written in ERB and HTML. Using Action View templates with ERB and HTML makes it possible to perform calculations and have them displayed on HTML pages, effectively turning HTML pages from static to dynamic.
 
 ## R16 Detail any third party services that your app will use:
 
@@ -140,6 +148,70 @@ Rails Admin:
 * Gives access to an admin panel which provides full crud over all tables and entries in the database.
 
 ## R17 Describe your projects models in terms of the relationships (active record associations) they have with each other
+
+### USERS:
+
+Each user may have many laptop orders
+
+Each user may have many laptops (only if theyre a seller)
+
+### LAPTOP BRANDS:
+
+Each laptop brand has many laptops
+
+### GRADES:
+
+Each grade has many laptops
+
+### CPUS:
+
+Each CPU has many laptops
+
+### RAM:
+
+Each RAM has many laptops
+
+### HARD DRIVES:
+
+Each Hard Drive has many laptops
+
+### LAPTOPS:
+
+Each Laptop has one:
+
+* user_id (foreign key in Users model):  
+	
+	This relation represents which User owns the laptop (the seller)
+
+* brand_id (foreign key in Laptop Brands model):
+	
+	This relation represents what Brand a laptop has (i.e. Apple, Windows, Dell)
+
+* grade_id (foreign key in Grades model)  
+	
+	This relation represents the Grade a laptop has (The used condition of the laptop)
+	
+* cpu_id (foreign key in CPUS model):
+	
+	This relation represents what CPU a laptop has (i.e. i3, i7, amd)
+
+* ram_id (foreign key in RAM model):
+	
+	This relation represents how much RAM a laptop has (i.e. 4gb, 8gb, 16gb)
+
+* hard\_drive_id (foreign key in CPUS model):
+	
+	This relation represents the size of the internal Hard Drive of a given laptop has (i.e. 128gb, 256gb, 1tb)
+
+
+### LAPTOP ORDERS:
+
+Each entry in Laptop Order has one user\_id and one laptop\_id.  
+  
+The user_id corresponds to the user who has purchased the laptop, laptop_id corresponds to that laptop.
+
+
+
 
 ## R18 Discuss the database relations to be implemented in your application
 
