@@ -1,0 +1,81 @@
+Project refurbished_laptop_marketplace {
+  database_type: "PostgreSQL"
+}
+
+Table users {
+  id bigint
+  name string
+  email string
+  password string
+  admin boolean
+  seller enum
+  
+}
+
+Table laptops {
+  id bigint
+  user_id bigint
+  brand_id bigint
+  grade_id bigint
+  cpu_id bigint
+  ram_id bigint
+  hard_drive_id bigint
+  model string
+  price integer
+  sold_status boolean
+}
+
+Table laptop_orders {
+  id bigint
+  user_id bigint
+  laptop_id bigint
+}
+
+
+Table brands {
+  id bigint
+  name string
+}
+
+Table cpus {
+  id bigint
+  name string
+}
+
+Table hard_drives {
+  id bigint
+  name string
+}
+
+Table ram {
+  id bigint
+  name string
+}
+
+Table grade {
+  id bigint
+  name string
+  description text
+}
+
+
+
+Ref: "cpus"."id" > "laptops"."cpu_id"
+
+Ref: "brands"."id" > "laptops"."brand_id"
+
+Ref: "hard_drives"."id" > "laptops"."hard_drive_id"
+
+Ref: "ram"."id" > "laptops"."ram_id"
+
+
+
+
+
+Ref: "users"."id" > "laptops"."user_id"
+
+Ref: "users"."id" > "laptop_orders"."user_id"
+
+Ref: "laptops"."id" - "laptop_orders"."laptop_id"
+
+Ref: "laptops"."grade_id" < "grade"."id"
