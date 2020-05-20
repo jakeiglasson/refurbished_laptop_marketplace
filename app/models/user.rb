@@ -8,4 +8,6 @@ class User < ApplicationRecord
 
   has_many :laptops, dependent: :destroy
   has_many :laptop_orders
+
+  validates :name, :email, presence: true
 end

@@ -5,24 +5,23 @@ class Ability
 
   def initialize(user)
     alias_action :create, :read, :update, :destroy, to: :crud
-    # can :read, :all                 # allow everyone to read everything
 
     user ||= User.new # guest user (not logged in)
-    can :manage, User, id: user.id #CRUD functionality for users own params - jake
+    can :manage, User, id: user.id #CRUD functionality for users own params  
 
-    # If user isn't a guest they can create and read laptop orders (read is needed so an error isnt thrown after an order is placed) - jake
+    # If user isn't a guest they can create and read laptop orders (read is needed so an error isnt thrown after an order is placed)  
     if user.guest == false
       can [:create, :read], [LaptopOrder]
     end
 
-    # If user is a seller they can create new laptops while maintaing full crud over the laptops they create otherwise the user can view all laptops - jake
+    # If user is a seller they can create new laptops while maintaing full crud over the laptops they create otherwise the user can view all laptops  
     if user.seller == "true"
       can :manage, Laptop, user_id: user.id
     else
       can :read, Laptop
     end
 
-    # grant admins full access to all objects - jake
+    # grant admins full access to all objects  
     if user.admin?
       can :manage, :all
     end

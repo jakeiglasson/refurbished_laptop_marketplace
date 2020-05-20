@@ -16,7 +16,7 @@ RailsAdmin.config do |config|
 
   ### Popular gems integration
 
-  # This is needed so that cancancan has access to user params - jake
+  # This is needed so that cancancan has access to user params  
   ## == Devise ==
   config.authenticate_with do
     warden.authenticate! scope: :user

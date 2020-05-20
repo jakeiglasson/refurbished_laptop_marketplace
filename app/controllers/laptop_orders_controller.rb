@@ -1,10 +1,11 @@
 class LaptopOrdersController < ApplicationController
-  load_and_authorize_resource # run cancancan authorization before every method - jake
+  load_and_authorize_resource # run cancancan authorization before every method  
   before_action :authenticate_user!
   before_action :set_laptop_order, only: [:show, :edit, :update, :destroy]
 
   # GET /laptop_orders
   # GET /laptop_orders.json
+  # Get all Laptop Order entries and send them to INDEX view  
   def index
     @laptop_orders = LaptopOrder.all
   end
@@ -15,6 +16,7 @@ class LaptopOrdersController < ApplicationController
   end
 
   # GET /laptop_orders/new
+  # Create a new empty Laptop Order entry and send it to NEW view 
   def new
     @laptop_order = LaptopOrder.new
   end
@@ -27,7 +29,7 @@ class LaptopOrdersController < ApplicationController
   # POST /laptop_orders.json
   def create
     @laptop_order = LaptopOrder.new(laptop_order_params)
-
+    #Check if newly created Laptop Order was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @laptop_order.save
         Laptop.find(laptop_order_params[:laptop_id]).update(
@@ -45,6 +47,7 @@ class LaptopOrdersController < ApplicationController
   # PATCH/PUT /laptop_orders/1
   # PATCH/PUT /laptop_orders/1.json
   def update
+    #Check if updated Laptop Order was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @laptop_order.update(laptop_order_params)
         format.html { redirect_to @laptop_order, notice: 'Laptop order was successfully updated.' }

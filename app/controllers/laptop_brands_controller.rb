@@ -1,10 +1,11 @@
 class LaptopBrandsController < ApplicationController
-  load_and_authorize_resource # run cancancan authorization before every method - jake
+  load_and_authorize_resource # run cancancan authorization before every method  
   before_action :authenticate_user!
   before_action :set_laptop_brand, only: [:show, :edit, :update, :destroy]
 
   # GET /laptop_brands
   # GET /laptop_brands.json
+  # Get all Laptop Brand entries and send them to INDEX view  
   def index
     @laptop_brands = LaptopBrand.all
   end
@@ -15,6 +16,7 @@ class LaptopBrandsController < ApplicationController
   end
 
   # GET /laptop_brands/new
+  # Create a new empty Laptop brand entry and send it to NEW view  
   def new
     @laptop_brand = LaptopBrand.new
   end
@@ -28,6 +30,7 @@ class LaptopBrandsController < ApplicationController
   def create
     @laptop_brand = LaptopBrand.new(laptop_brand_params)
 
+    #Check if newly created Laptop Brand was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @laptop_brand.save
         format.html { redirect_to @laptop_brand, notice: 'Laptop brand was successfully created.' }
@@ -42,6 +45,7 @@ class LaptopBrandsController < ApplicationController
   # PATCH/PUT /laptop_brands/1
   # PATCH/PUT /laptop_brands/1.json
   def update
+    #Check if updated Laptop Brand was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @laptop_brand.update(laptop_brand_params)
         format.html { redirect_to @laptop_brand, notice: 'Laptop brand was successfully updated.' }

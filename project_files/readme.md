@@ -285,6 +285,7 @@ Process:
 
 * Once a feature is fully tested and deemed working, it is placed in the DONE card
 
-* When work is interrupted, a brief desrciption of what you were working on is placed in the WHAT YOU WERE WORKING ON BEFORE YOU STOPPED card. What work to commence when the interruption is gone is placed in the WHAT TO DO WHEN YOU GET BACK card.
+* When work is interrupted, a brief description of what you were working on is placed in the WHAT YOU WERE WORKING ON BEFORE YOU STOPPED card. What work to commence when the interruption is gone is placed in the WHAT TO DO WHEN YOU GET BACK card.
+
 
 

@@ -1,10 +1,11 @@
 class RamsController < ApplicationController
-  load_and_authorize_resource # run cancancan authorization before every method - jake
+  load_and_authorize_resource # run cancancan authorization before every method  
   before_action :authenticate_user! 
   before_action :set_ram, only: [:show, :edit, :update, :destroy]
 
   # GET /rams
   # GET /rams.json
+  # Get all RAM entries and send them to INDEX view  
   def index
     @rams = Ram.all
   end
@@ -15,6 +16,7 @@ class RamsController < ApplicationController
   end
 
   # GET /rams/new
+  # Create a new empty RAM entry and send it to NEW view  
   def new
     @ram = Ram.new
   end
@@ -27,7 +29,7 @@ class RamsController < ApplicationController
   # POST /rams.json
   def create
     @ram = Ram.new(ram_params)
-
+    #Check if newly created RAM was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @ram.save
         format.html { redirect_to @ram, notice: 'Ram was successfully created.' }
@@ -42,6 +44,7 @@ class RamsController < ApplicationController
   # PATCH/PUT /rams/1
   # PATCH/PUT /rams/1.json
   def update
+    #Check if updated RAM was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @ram.update(ram_params)
         format.html { redirect_to @ram, notice: 'Ram was successfully updated.' }

@@ -288,3 +288,22 @@ Process:
 * When work is interrupted, a brief desrciption of what you were working on is placed in the WHAT YOU WERE WORKING ON BEFORE YOU STOPPED card. What work to commence when the interruption is gone is placed in the WHAT TO DO WHEN YOU GET BACK card.
 
 
+```
+
+class CpusController < ApplicationController
+  load_and_authorize_resource # run cancancan authorization before every method  
+  before_action :authenticate_user!
+  before_action :set_cpu, only: [:show, :edit, :update, :destroy]
+
+	index:
+  # Get all CPU entries and send them to INDEX view  
+
+	new:
+  # Create a new empty CPU entry and send it to NEW view  
+
+  #Check if newly created CPU was saved in databse, if it was flash a success message, if not flash a error message
+
+  #Check if updated CPU was saved in databse, if it was flash a success message, if not flash a error message
+
+```
+

@@ -1,10 +1,11 @@
 class CpusController < ApplicationController
-  load_and_authorize_resource # run cancancan authorization before every method - jake
+  load_and_authorize_resource # run cancancan authorization before every method  
   before_action :authenticate_user!
   before_action :set_cpu, only: [:show, :edit, :update, :destroy]
 
   # GET /cpus
   # GET /cpus.json
+  # Get all CPU entries and send them to INDEX view  
   def index
     @cpus = Cpu.all
   end
@@ -15,6 +16,7 @@ class CpusController < ApplicationController
   end
 
   # GET /cpus/new
+  # Create a new empty CPU entry and send it to NEW view  
   def new
     @cpu = Cpu.new
   end
@@ -29,6 +31,7 @@ class CpusController < ApplicationController
     @cpu = Cpu.new(cpu_params)
 
     respond_to do |format|
+      #Check if newly created CPU was saved in database, if it was flash a success message, if not flash a error message
       if @cpu.save
         format.html { redirect_to @cpu, notice: 'Cpu was successfully created.' }
         format.json { render :show, status: :created, location: @cpu }
@@ -43,6 +46,7 @@ class CpusController < ApplicationController
   # PATCH/PUT /cpus/1.json
   def update
     respond_to do |format|
+      #Check if updated CPU was saved in database, if it was flash a success message, if not flash a error message
       if @cpu.update(cpu_params)
         format.html { redirect_to @cpu, notice: 'Cpu was successfully updated.' }
         format.json { render :show, status: :ok, location: @cpu }

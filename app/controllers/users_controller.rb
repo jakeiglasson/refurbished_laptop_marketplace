@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource # run cancancan authorization before every method - jake
+  load_and_authorize_resource # run cancancan authorization before every method  
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # GET /users
   # GET /users.json
+
   def index
     render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
   end
@@ -13,11 +14,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    # get an array of IDs for all laptops the current user has purchased - jake 
+    # get an array of IDs for all laptops the current user has purchased   
     arr = current_user.laptop_orders.pluck(:laptop_id)
-    # from the above array of IDs find all laptops that match those IDs - jake
+    # from the above array of IDs find all laptops that match those IDs and send to show view 
     @purchased_laptops = Laptop.find(arr)
 
+    # If the user is a seller get all laptops they have listed and send to show view
     if current_user.seller == "true"
       arr = current_user.laptops.pluck(:id)
       @listings = Laptop.find(arr)
@@ -26,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   # GET /users/new
+  # Create a new empty USER entry and send it to NEW view  
   def new
     @user = User.new
   end
@@ -38,7 +41,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    #Check if newly created USER was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @user.save
         puts "----------------------------------success"
@@ -55,6 +58,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    #Check if updated USER was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

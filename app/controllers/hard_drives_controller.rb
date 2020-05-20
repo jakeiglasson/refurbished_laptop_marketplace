@@ -1,10 +1,11 @@
 class HardDrivesController < ApplicationController
-  load_and_authorize_resource # run cancancan authorization before every method - jake
+  load_and_authorize_resource # run cancancan authorization before every method  
   before_action :authenticate_user!
   before_action :set_hard_drive, only: [:show, :edit, :update, :destroy]
 
   # GET /hard_drives
   # GET /hard_drives.json
+  # Get all Hard Drive entries and send them to INDEX view  
   def index
     @hard_drives = HardDrive.all
   end
@@ -15,6 +16,7 @@ class HardDrivesController < ApplicationController
   end
 
   # GET /hard_drives/new
+  # Create a new empty Hard Drive entry and send it to NEW view  
   def new
     @hard_drive = HardDrive.new
   end
@@ -29,6 +31,7 @@ class HardDrivesController < ApplicationController
     @hard_drive = HardDrive.new(hard_drive_params)
 
     respond_to do |format|
+      #Check if newly created Hard Drive was saved in database, if it was flash a success message, if not flash a error message
       if @hard_drive.save
         format.html { redirect_to @hard_drive, notice: 'Hard drive was successfully created.' }
         format.json { render :show, status: :created, location: @hard_drive }
@@ -42,6 +45,7 @@ class HardDrivesController < ApplicationController
   # PATCH/PUT /hard_drives/1
   # PATCH/PUT /hard_drives/1.json
   def update
+    #Check if updated Hard Drive was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @hard_drive.update(hard_drive_params)
         format.html { redirect_to @hard_drive, notice: 'Hard drive was successfully updated.' }
