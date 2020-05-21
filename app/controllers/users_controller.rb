@@ -14,15 +14,29 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    # get an array of IDs for all laptops the current user has purchased   
-    arr = current_user.laptop_orders.pluck(:laptop_id)
-    # from the above array of IDs find all laptops that match those IDs and send to show view 
-    @purchased_laptops = Laptop.find(arr)
+    # # get an array of IDs for all laptops the current user has purchased   
+    # arr = current_user.laptop_orders.pluck(:laptop_id)
+    # # from the above array of IDs find all laptops that match those IDs and send to show view 
+    # @purchased_laptops = Laptop.find(arr)
 
-    # If the user is a seller get all laptops they have listed and send to show view
+    # # If the user is a seller get all laptops they have listed and send to show view
+    # if current_user.seller == "true"
+    #   arr = current_user.laptops.pluck(:id)
+    #   @listings = Laptop.find(arr)
+    # end
+
+    # get array of ids for all laptops a user has purchased
+    arr = current_user.laptop_orders.pluck(:laptop_id)
+    columns =  [:user, :laptop_brand, :grade, :cpu, :ram, :hard_drive]
+
+    # Eager load all purchased laptops (using above array) for current user
+    @purchased_laptops = Laptop.where(id: arr).order("model").includes(columns).with_attached_picture
+
+    # Eager load all laptops a user (seller) owns
     if current_user.seller == "true"
-      arr = current_user.laptops.pluck(:id)
-      @listings = Laptop.find(arr)
+
+      @listings = Laptop.where(user_id: current_user.id).includes(columns).with_attached_picture
+      
     end
 
   end

@@ -44,12 +44,12 @@
           <% end %>
         </td>
         <td><%= laptop.id %></td>
-        <td><%= User.find(laptop.user_id).name %></td>
-        <td><%= LaptopBrand.find(laptop.brand_id).name %></td>
-        <td><%= Grade.find(laptop.grade_id).name %></td>
-        <td><%= Cpu.find(laptop.cpu_id).name %></td>
-        <td><%= Ram.find(laptop.ram_id).name %></td>
-        <td><%= HardDrive.find(laptop.hard_drive_id).name %></td>
+        <td><%= laptop.user.name %></td>
+        <td><%= laptop.laptop_brand.name %></td>
+        <td><%= laptop.grade.name %></td>
+        <td><%= laptop.cpu.name %></td>
+        <td><%= laptop.ram.name %></td>
+        <td><%= laptop.hard_drive.name %></td>
         <td><%= laptop.model %></td>
         <td><%= laptop.price %></td>
         <td><%= laptop.sold_status %></td>
@@ -95,12 +95,12 @@
               <% end %>
             </td>
             <td><%= laptop.id %></td>
-            <td><%= User.find(laptop.user_id).name %></td>
-            <td><%= LaptopBrand.find(laptop.brand_id).name %></td>
-            <td><%= Grade.find(laptop.grade_id).name %></td>
-            <td><%= Cpu.find(laptop.cpu_id).name %></td>
-            <td><%= Ram.find(laptop.ram_id).name %></td>
-            <td><%= HardDrive.find(laptop.hard_drive_id).name %></td>
+            <td><%= laptop.user.name %></td>
+            <td><%= laptop.laptop_brand.name %></td>
+            <td><%= laptop.grade.name %></td>
+            <td><%= laptop.cpu.name %></td>
+            <td><%= laptop.ram.name %></td>
+            <td><%= laptop.hard_drive.name %></td>
             <td><%= laptop.model %></td>
             <td><%= laptop.price %></td>
             <td><%= laptop.sold_status %></td>
@@ -147,12 +147,12 @@
               <% end %>
             </td>
             <td><%= laptop.id %></td>
-            <td><%= User.find(laptop.user_id).name %></td>
-            <td><%= LaptopBrand.find(laptop.brand_id).name %></td>
-            <td><%= Grade.find(laptop.grade_id).name %></td>
-            <td><%= Cpu.find(laptop.cpu_id).name %></td>
-            <td><%= Ram.find(laptop.ram_id).name %></td>
-            <td><%= HardDrive.find(laptop.hard_drive_id).name %></td>
+            <td><%= laptop.user.name %></td>
+            <td><%= laptop.laptop_brand.name %></td>
+            <td><%= laptop.grade.name %></td>
+            <td><%= laptop.cpu.name %></td>
+            <td><%= laptop.ram.name %></td>
+            <td><%= laptop.hard_drive.name %></td>
             <td><%= laptop.model %></td>
             <td><%= laptop.price %></td>
             <td><%= laptop.sold_status %></td>
