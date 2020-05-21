@@ -259,7 +259,7 @@ By implementing each component as its own table instead of as a column inside of
 
 ## R19	Provide your database schema design
 
-DBML file supplied in docs
+DBML file supplied in docs and db folder inside src
 
 ## R20	Describe the way tasks are allocated and tracked in your project
 

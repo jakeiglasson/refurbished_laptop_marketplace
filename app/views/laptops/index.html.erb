@@ -56,7 +56,7 @@
             <%= link_to 'Remove', laptop, method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
         <% else %>
-          <td><%= link_to 'BUY', laptop_orders_path(laptop_id: laptop.id, user_id: current_or_guest_user.id), method: :post%></td>
+          <td><%= link_to 'BUY', laptop_orders_path(laptop_order: {laptop_id: laptop.id, user_id: current_or_guest_user.id}), method: :post%></td>
         <% end %>
       </tr>
     <% end %>
