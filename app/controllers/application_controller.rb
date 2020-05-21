@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
     render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
   end
 
+  # Catch all case for records that dont exist
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render :file => "#{Rails.root}/public/404.html", :status => 403, :layout => false
+  end
+
   protected
 
   def configure_permitted_parameters
