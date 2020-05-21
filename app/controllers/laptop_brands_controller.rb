@@ -5,9 +5,9 @@ class LaptopBrandsController < ApplicationController
 
   # GET /laptop_brands
   # GET /laptop_brands.json
-  # Get all Laptop Brand entries and send them to INDEX view  
+  # Eager load all Laptop Brand entries and send them to INDEX view  
   def index
-    @laptop_brands = LaptopBrand.all
+    @laptop_brands = LaptopBrand.with_attached_picture.all
   end
 
   # GET /laptop_brands/1

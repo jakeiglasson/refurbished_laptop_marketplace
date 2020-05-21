@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_034432) do
+ActiveRecord::Schema.define(version: 2020_05_21_023519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,10 +43,9 @@ ActiveRecord::Schema.define(version: 2020_05_19_034432) do
   end
 
   create_table "grades", force: :cascade do |t|
-    t.text "name"
-    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
   end
 
   create_table "hard_drives", force: :cascade do |t|
@@ -70,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_034432) do
 
   create_table "laptops", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "brand_id"
+    t.bigint "laptop_brand_id"
     t.string "grade_id"
     t.bigint "cpu_id"
     t.bigint "ram_id"

@@ -14,8 +14,8 @@
   <tbody>
     <% @laptop_orders.each do |laptop_order| %>
       <tr>
-        <td><%= User.find(laptop_order.user_id).name %></td>
-        <td><%= Laptop.find(laptop_order.laptop_id).model %></td>
+        <td><%= laptop_order.user.name %></td>
+        <td><%= laptop_order.laptop.model %></td>
         <td><%= link_to 'Show', laptop_order %></td>
         <td><%= link_to 'Edit', edit_laptop_order_path(laptop_order) %></td>
         <td><%= link_to 'Destroy', laptop_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>

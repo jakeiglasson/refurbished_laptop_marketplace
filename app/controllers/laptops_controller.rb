@@ -7,15 +7,20 @@ class LaptopsController < ApplicationController
   # GET /laptops.json
   # Get all Laptop entries and send them to INDEX view  
   def index
-    # get all laptops that ARENT sold  
-    @unsold_laptops = Laptop.where(sold_status: "false")
-    # get all laptops that ARE sold  
-    @sold_laptops = Laptop.where(sold_status: "true")
+    # eager load all laptops
+    laptops = Laptop.order("model").includes(:user, :laptop_brand, :grade, :cpu, :ram, :hard_drive).with_attached_picture
+
+    # Get all laptops that ARENT sold and send them to index
+    @unsold_laptops = laptops.where(sold_status: "false")
+
+    # Get all laptops the ARE sold and send them to index
+    @sold_laptops = laptops.where(sold_status: "true")
   end
 
   # GET /laptops/1
   # GET /laptops/1.json
   def show
+
   end
 
   # GET /laptops/new
@@ -80,6 +85,6 @@ class LaptopsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def laptop_params
-      params.require(:laptop).permit(:user_id, :brand_id, :grade_id, :Laptop_id, :ram_id, :cpu_id, :hard_drive_id, :model, :price, :sold_status, :picture)
+      params.require(:laptop).permit(:user_id, :laptop_brand_id, :grade_id, :Laptop_id, :ram_id, :cpu_id, :hard_drive_id, :model, :price, :sold_status, :picture)
     end
 end

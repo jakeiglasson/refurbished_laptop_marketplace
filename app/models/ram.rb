@@ -1,4 +1,4 @@
 class Ram < ApplicationRecord
-  has_many :laptops, :foreign_key => :id
+  has_many :laptops
   validates :name, presence: true
 end

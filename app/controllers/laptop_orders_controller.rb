@@ -5,9 +5,9 @@ class LaptopOrdersController < ApplicationController
 
   # GET /laptop_orders
   # GET /laptop_orders.json
-  # Get all Laptop Order entries and send them to INDEX view  
+  # Eager load all Laptop Order entries and send them to INDEX view  
   def index
-    @laptop_orders = LaptopOrder.all
+    @laptop_orders = LaptopOrder.includes(:user, :laptop)
   end
 
   # GET /laptop_orders/1
@@ -77,6 +77,6 @@ class LaptopOrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def laptop_order_params
-      params.permit(:user_id, :laptop_id)
+      params.require(:laptop_order).permit(:user_id, :laptop_id)
     end
 end
