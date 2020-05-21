@@ -1,1 +1,1 @@
-json.partial! "laptops/laptop", laptop: @laptop
+json.partial! 'laptops/laptop', laptop: @laptop

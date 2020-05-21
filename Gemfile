@@ -64,3 +64,5 @@ gem 'rails_admin', '~> 2.0.2'
 gem "cancancan", "~> 3.1"
 
 gem "devise-guests", "~> 0.7.0"
+
+gem "rubocop-rails", "~> 2.5"

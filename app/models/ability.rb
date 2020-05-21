@@ -7,26 +7,17 @@ class Ability
     alias_action :create, :read, :update, :destroy, to: :crud
 
     user ||= User.new # guest user (not logged in)
-    can :manage, User, id: user.id #CRUD functionality for users own information
-    can :read, Laptop #Allow all users to read laptop information
+    can :manage, User, id: user.id # CRUD functionality for users own information
+    can :read, Laptop # Allow all users to read laptop information
 
-    # If user isn't a guest they can create and read laptop orders (read is needed so an error isnt thrown after an order is placed)  
-    if user.guest == false
-      can [:create, :read], [LaptopOrder]
-    end
+    # If user isn't a guest they can create and read laptop orders (read is needed so an error isnt thrown after an order is placed)
+    can %i[create read], [LaptopOrder] if user.guest == false
 
-    # If user is a seller they can create new laptops while maintaing full crud over the laptops they create otherwise the user can view all laptops  
-    if user.seller == "true"
-      can :manage, Laptop, user_id: user.id
-    end
+    # If user is a seller they can create new laptops while maintaing full crud over the laptops they create otherwise the user can view all laptops
+    can :manage, Laptop, user_id: user.id if user.seller == 'true'
 
-    # grant admins full access to all objects  
-    if user.admin?
-      can :manage, :all
-    end
-
-
-    
+    # grant admins full access to all objects
+    can :manage, :all if user.admin?
 
     # if user.admin?
     #   can :manage, :all

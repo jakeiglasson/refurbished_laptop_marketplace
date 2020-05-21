@@ -1,1 +1,1 @@
-json.array! @laptops, partial: "laptops/laptop", as: :laptop
+json.array! @laptops, partial: 'laptops/laptop', as: :laptop

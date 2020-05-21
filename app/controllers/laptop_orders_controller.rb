@@ -1,39 +1,37 @@
 class LaptopOrdersController < ApplicationController
-  load_and_authorize_resource # run cancancan authorization before every method  
+  load_and_authorize_resource # run cancancan authorization before every method
   before_action :authenticate_user!
-  before_action :set_laptop_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_laptop_order, only: %i[show edit update destroy]
 
   # GET /laptop_orders
   # GET /laptop_orders.json
-  # Eager load all Laptop Order entries and send them to INDEX view  
+  # Eager load all Laptop Order entries and send them to INDEX view
   def index
     @laptop_orders = LaptopOrder.includes(:user, :laptop)
   end
 
   # GET /laptop_orders/1
   # GET /laptop_orders/1.json
-  def show
-  end
+  def show; end
 
   # GET /laptop_orders/new
-  # Create a new empty Laptop Order entry and send it to NEW view 
+  # Create a new empty Laptop Order entry and send it to NEW view
   def new
     @laptop_order = LaptopOrder.new
   end
 
   # GET /laptop_orders/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /laptop_orders
   # POST /laptop_orders.json
   def create
     @laptop_order = LaptopOrder.new(laptop_order_params)
-    #Check if newly created Laptop Order was saved in database, if it was flash a success message, if not flash a error message
+    # Check if newly created Laptop Order was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @laptop_order.save
         Laptop.find(laptop_order_params[:laptop_id]).update(
-          sold_status: "true"
+          sold_status: 'true'
         )
         format.html { redirect_to Laptop, notice: 'Laptop order was successfully created.' }
         format.json { render :show, status: :created, location: @laptop_order }
@@ -47,7 +45,7 @@ class LaptopOrdersController < ApplicationController
   # PATCH/PUT /laptop_orders/1
   # PATCH/PUT /laptop_orders/1.json
   def update
-    #Check if updated Laptop Order was saved in database, if it was flash a success message, if not flash a error message
+    # Check if updated Laptop Order was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @laptop_order.update(laptop_order_params)
         format.html { redirect_to @laptop_order, notice: 'Laptop order was successfully updated.' }
@@ -70,13 +68,14 @@ class LaptopOrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_laptop_order
-      @laptop_order = LaptopOrder.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def laptop_order_params
-      params.require(:laptop_order).permit(:user_id, :laptop_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_laptop_order
+    @laptop_order = LaptopOrder.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def laptop_order_params
+    params.require(:laptop_order).permit(:user_id, :laptop_id)
+  end
 end

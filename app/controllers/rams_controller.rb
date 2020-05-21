@@ -1,35 +1,33 @@
 class RamsController < ApplicationController
-  load_and_authorize_resource # run cancancan authorization before every method  
-  before_action :authenticate_user! 
-  before_action :set_ram, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource # run cancancan authorization before every method
+  before_action :authenticate_user!
+  before_action :set_ram, only: %i[show edit update destroy]
 
   # GET /rams
   # GET /rams.json
-  # Get all RAM entries and send them to INDEX view  
+  # Get all RAM entries and send them to INDEX view
   def index
     @rams = Ram.all
   end
 
   # GET /rams/1
   # GET /rams/1.json
-  def show
-  end
+  def show; end
 
   # GET /rams/new
-  # Create a new empty RAM entry and send it to NEW view  
+  # Create a new empty RAM entry and send it to NEW view
   def new
     @ram = Ram.new
   end
 
   # GET /rams/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /rams
   # POST /rams.json
   def create
     @ram = Ram.new(ram_params)
-    #Check if newly created RAM was saved in database, if it was flash a success message, if not flash a error message
+    # Check if newly created RAM was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @ram.save
         format.html { redirect_to @ram, notice: 'Ram was successfully created.' }
@@ -44,7 +42,7 @@ class RamsController < ApplicationController
   # PATCH/PUT /rams/1
   # PATCH/PUT /rams/1.json
   def update
-    #Check if updated RAM was saved in database, if it was flash a success message, if not flash a error message
+    # Check if updated RAM was saved in database, if it was flash a success message, if not flash a error message
     respond_to do |format|
       if @ram.update(ram_params)
         format.html { redirect_to @ram, notice: 'Ram was successfully updated.' }
@@ -67,13 +65,14 @@ class RamsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ram
-      @ram = Ram.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def ram_params
-      params.require(:ram).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ram
+    @ram = Ram.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def ram_params
+    params.require(:ram).permit(:name)
+  end
 end

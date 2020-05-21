@@ -1,1 +1,1 @@
-json.partial! "rams/ram", ram: @ram
+json.partial! 'rams/ram', ram: @ram
