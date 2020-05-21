@@ -52,5 +52,57 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+
+  end
+
+  config.model "Laptop" do
+    list do
+
+      #Manually enable/disable per field
+      field :id do
+        filterable true
+      end
+      field :user_id do
+        filterable true
+      end
+      field :laptop_brand_id do
+        filterable true
+      end
+      field :grade_id do
+        filterable true
+      end
+      field :cpu_id do
+        filterable true
+      end
+      field :ram_id do
+        filterable true
+      end
+      field :hard_drive_id do
+        filterable true
+      end
+      field :model do
+        filterable true
+      end
+      field :price do
+        filterable true
+      end
+      field :created_at do
+        filterable true
+      end
+      field :updated_at do
+        filterable true
+      end
+      field :sold_status do
+        filterable true
+      end
+
+
+      # field ":user" do
+      #   filterable true
+      # end
+
+
+    end
+
   end
 end
