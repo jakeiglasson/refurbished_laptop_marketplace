@@ -8,6 +8,7 @@ class LaptopOrdersController < ApplicationController
   # Eager load all Laptop Order entries and send them to INDEX view  
   def index
     @laptop_orders = LaptopOrder.includes(:user, :laptop)
+    byebug
   end
 
   # GET /laptop_orders/1
